@@ -25,11 +25,10 @@ async function postTodos(){
         let options ={
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                'Content-Type': 'application/json;charset=utf-8'
             },
             body: JSON.stringify({
-                name: inputTodo.value,
-                completed: false
+                name: inputTodo.value
             })
         }
         const response = await fetch(URL, options)
@@ -40,39 +39,9 @@ async function postTodos(){
     }
 }
 
-function displayTodos(){
+function displayTodos(json){
 
-    const activeDiv = document.querySelector('.active')
-    const finishedDiv = document.querySelector('.finished')
-    const onHoldDiv = document.querySelector('.onHold')
-    const canceledDiv = document.querySelector('.canceled')
-
-    let createCloseTodoBtn = document.createElement("button")
-    createCloseTodoBtn.classList.add("closeTodoBtn")
-    createCloseTodoBtn.textContent = 'X'
-
-    let createTodo = document.createElement('div')
-    createTodo.classList.add('todo')
-    createTodo.textContent = inputTodo.value
-
-    if (activeRadio.checked && inputTodo.value != '') {
-        createTodo.append(createCloseTodoBtn)
-        activeDiv.append(createTodo)
-    }else if(finishedRadio.checked && inputTodo.value != ''){
-        createTodo.append(createCloseTodoBtn)
-        finishedDiv.append(createTodo)
-    }else if(onHoldRadio.checked && inputTodo.value != ''){
-        createTodo.append(createCloseTodoBtn)
-        onHoldDiv.append(createTodo)
-    }else if(canceledRadio.checked && inputTodo.value != ''){
-        createTodo.append(createCloseTodoBtn)
-        canceledDiv.append(createTodo)
-    }
-
-    createCloseTodoBtn.addEventListener('click', function(event){
-        event.stopPropagation()
-        createTodo.remove()
-    })
+    
 
 }
 
@@ -88,8 +57,42 @@ createTodoBtn.addEventListener("click", () =>{
 
     if(inputTodo.value != ''){
         postTodos()
-        displayTodos()
-    }
+        fetch("http://localhost:3000/todos")
+            .then(res =>{
+                return res.json()
+            })
+            .then(json =>{
+                const activeDiv = document.querySelector('.active')
+                const finishedDiv = document.querySelector('.finished')
+                const onHoldDiv = document.querySelector('.onHold')
+                const canceledDiv = document.querySelector('.canceled')
+
+                let createCloseTodoBtn = document.createElement("button")
+                createCloseTodoBtn.classList.add("closeTodoBtn")
+                createCloseTodoBtn.textContent = 'X'
+
+                let createTodo = document.createElement('div')
+                createTodo.classList.add('todo')
+                createTodo.textContent = json[json.length - 1].name
+
+                if (activeRadio.checked && inputTodo.value != '') {
+                    createTodo.append(createCloseTodoBtn)
+                    activeDiv.append(createTodo)
+                }else if(finishedRadio.checked && inputTodo.value != ''){
+                    createTodo.append(createCloseTodoBtn)
+                    finishedDiv.append(createTodo)
+                }else if(onHoldRadio.checked && inputTodo.value != ''){
+                    createTodo.append(createCloseTodoBtn)
+                    onHoldDiv.append(createTodo)
+                }else if(canceledRadio.checked && inputTodo.value != ''){
+                    createTodo.append(createCloseTodoBtn)
+                    canceledDiv.append(createTodo)
+                }
+
+                createCloseTodoBtn.addEventListener('click', function(event){
+                    event.stopPropagation()
+                    createTodo.remove()
+                })
+            })
+    }       
 })
-
-
