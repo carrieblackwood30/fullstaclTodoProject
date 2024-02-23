@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="index.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+    <section class="form-section">
+
+        <div class="form-conainer">
+            <input type="text" class="input" placeholder="create a task..">
+            <button class="createBtn" type="submit"> create </button>
+
+            <div class="form-bottom">
+                <input type="radio" name="status" class="activeRadio">
+                <label for="status">Active</label>
+
+                <input type="radio" name="status" class="finishedRadio">
+                <label for="status">Finished</label>
+
+                <input type="radio" name="status" class="onHoldRadio">
+                <label for="status">On Hold</label>
+
+                <input type="radio" name="status" class="canceledRadio">
+                <label for="status">Canceled</label>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="todo-list">
+        <div class="card">
+            <h3>ACTIVE</h3>
+            <div class="active todos">
+            </div>
+        </div>
+        <div class="card">
+            <h3>ON HOLD</h3>
+            <div class="onHold todos">
+            </div>
+        </div>
+        <div class="card">
+            <h3>FINISHED</h3>
+            <div class="finished todos">
+            </div>
+        </div>
+        <div class="card">
+            <h3>CANCELED</h3>
+            <div class="canceled todos">
+            </div>
+        </div>
+    </section>
+
+    <div id="result"></div>
+
+</body>
+
+</html>
