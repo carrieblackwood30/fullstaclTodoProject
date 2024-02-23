@@ -40,11 +40,7 @@ async function postTodos(){
     }
 }
 
-function displayTodos(todoArr   ){
-
-    todoArr.forEach((todoElem) => {
-        console.log(todoElem)})
-    
+function displayTodos(){
 
     const activeDiv = document.querySelector('.active')
     const finishedDiv = document.querySelector('.finished')
