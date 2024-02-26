@@ -16,19 +16,19 @@
 
         <div class="form-conainer">
             <input type="text" class="input" placeholder="create a task..">
-            <button class="createBtn" type="submit"> create </button>
+            <button class="createBtn"> create </button>
 
             <div class="form-bottom">
-                <input type="radio" name="status" class="activeRadio">
+                <input type="radio" value="active" name="status" class="Radio" id="active">
                 <label for="status">Active</label>
 
-                <input type="radio" name="status" class="finishedRadio">
-                <label for="status">Finished</label>
+                <input type="radio" value="finished" name="status" class="Radio">
+                <label for="status">finished</label>
 
-                <input type="radio" name="status" class="onHoldRadio">
+                <input type="radio" value="onHold" name="status" class="Radio">
                 <label for="status">On Hold</label>
 
-                <input type="radio" name="status" class="canceledRadio">
+                <input type="radio" value="canceled" name="status" class="Radio">
                 <label for="status">Canceled</label>
             </div>
         </div>
