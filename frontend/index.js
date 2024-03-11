@@ -208,14 +208,13 @@ function display_Todos(todoArr) {
                     if (todoArr.some(todo => todo.id === todoId && todo.status === status)) {
                         return
                     }
-                    loaderF()
-                    // window.location.reload()
+                    // loaderF()
                     todoArr.find(todo => todo.id === todoId).status = status
                     await axios.put(`http://localhost:3000/todos/${todoId}`, {
                         status: status,
-                        name: data.item[0].innerText
+                        name: data.item[0].innerText.slice(0, - 2)
                     })
-                    loaderF()
+                    // loaderF()
                     // window.location.reload()
                 },
             }).disableSelection();
@@ -254,6 +253,7 @@ async function edit_Todo(todoElem) {
             body: JSON.stringify({
                 id: todoElem.id,
                 name: inputEdit.value,
+                status: todoElem.status
             }),
         };
         const resp = await fetch(edit_url, options)
